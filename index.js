@@ -2,6 +2,11 @@ const sass = require('node-sass');
 const path = require('path');
 
 module.exports = (css, settings) => {
+  // resolve tag can have rules without selector
+  if (css.trim().startsWith('{')) {
+    return css
+  }
+
   const cssWithPlaceholders = css
     .replace(/%%styled-jsx-placeholder-(\d+)%%(\w*\s*[),;!{])/g, (_, id, p1) =>
       `styled-jsx-placeholder-${id}-${p1}`
