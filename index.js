@@ -17,9 +17,9 @@ module.exports = (css, settings) => {
     )
     .replace(
       /%%styled-jsx-placeholder-(\d+)%%%/g,
-      (_, id) => `/*%%styled-jsx-percent-placeholder-${id}%%*/`,
+      (_, id) => `_styled-jsx-percent-placeholder-${id}`,
     )
-    .replace(/%%styled-jsx-placeholder-(\d+)%%/g, (_, id) => `/*%%styled-jsx-placeholder-${id}%%*/`)
+    .replace(/%%styled-jsx-placeholder-(\d+)%%/g, (_, id) => `_styled-jsx-placeholder-${id}`)
 
   // Prepend option data to cssWithPlaceholders
   const optionData = (settings.sassOptions && settings.sassOptions.data) || ''
@@ -39,11 +39,11 @@ module.exports = (css, settings) => {
       (_, id, p1) => `%%styled-jsx-placeholder-${id}%%${p1}`,
     )
     .replace(
-      /\/\*%%styled-jsx-percent-placeholder-(\d+)%%\*\//g,
+      /_styled-jsx-percent-placeholder-(\d+)/g,
       (_, id) => `%%styled-jsx-placeholder-${id}%%%`,
     )
     .replace(
-      /\/\*%%styled-jsx-placeholder-(\d+)%%\*\//g,
+      /_styled-jsx-placeholder-(\d+)/g,
       (_, id) => `%%styled-jsx-placeholder-${id}%%`,
     )
 }
